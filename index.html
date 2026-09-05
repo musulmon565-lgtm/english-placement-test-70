@@ -958,6 +958,22 @@ function finishTest() {
 
         </div>
     `;
+
+    // Google Sheets
+    const scriptURL = "https://script.google.com/macros/s/AKfycbx0rE80sP_yVtNrIUJfgQsM4lYvo6AQRLHNo_iAtikZafKQew34s9mV3RyH8VKd5wc1/exec";
+
+    fetch(scriptURL, {
+        method: "POST",
+        body: JSON.stringify({
+            name: studentName,
+            score: score,
+            total: questions.length,
+            percentage: percentage,
+            level: level
+        })
+    })
+    .then(response => console.log("Result sent to Google Sheets"))
+    .catch(error => console.error("Error:", error));
 }
 function restartTest() {
     currentQuestion = 0;
